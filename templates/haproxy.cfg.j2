@@ -93,15 +93,15 @@ backend {{ backend.name }}
 
 {% if backend.servers is defined %}
 {% for server in backend.servers %}
-    server {{ server.name }} {{ server.address }} {% if backend.cookie is defined %} cookie {% endif %} check
+    server {{ server.name }} {{ server.address }} {% if backend.cookie is defined %} cookie {% endif %} check {% if server.options is defined %} {{ server.options }} {% endif %}
 {% endfor %}
 {% endif %}
 
 {% if backend.timeouts is defined %}
 {% for timeout in backend.timeouts %}
     timeout {{ timeout.name }} {{ timeout.value }}
-  {% endfor %}
-  {% endif %}
+{% endfor %}
+{% endif %}
 
 {% endfor %}
 
