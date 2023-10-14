@@ -40,13 +40,11 @@ defaults
 frontend {{ frontend.name }}
     bind {{ frontend.bind_address }}:{{ frontend.port }}
     mode {{ frontend.mode }}
-
 {% if frontend.tcp_requests is defined %}
 {% for tcp_request in frontend.tcp_requests %}
     tcp-request {{ tcp_request.action }} {{ tcp_request.criteria }}
 {% endfor %}
 {% endif %}
-
 {% if frontend.default_backend is defined %}
     default_backend {{ frontend.default_backend }}
 {% endif %}
@@ -55,16 +53,14 @@ frontend {{ frontend.name }}
     acl {{ acl.name }} {{ acl.criteria }}
 {% endfor %}
 {% endif %}
-
 {% if frontend.use_backends is defined %}
 {% for use_backend in frontend.use_backends %}
     use_backend {{ use_backend.backend }} if {{ use_backend.condition }}
 {% endfor %}
 {% endif %} 
-    
-    {% if frontend.timeout_client is defined %}
+{% if frontend.timeout_client is defined %}
     timeout client {{ frontend.timeout_client }}
-    {% endif %}
+{% endif %}
 {% endfor %}
 
 
@@ -72,13 +68,11 @@ frontend {{ frontend.name }}
 backend {{ backend.name }}
     mode {{ backend.mode }}
     balance {{ backend.balance_method }}
-  
 {% if backend.options is defined %}
 {% for option in backend.options %}
     option {{ option }}
 {% endfor %}
 {% endif %}
-
 {% if backend.httpchk is defined %}
     option httpchk {{ backend.httpchk }}
 {% endif %}
@@ -90,13 +84,11 @@ backend {{ backend.name }}
     http-check {{ http_check }}
 {% endfor %}
 {% endif %}
-
 {% if backend.servers is defined %}
 {% for server in backend.servers %}
     server {{ server.name }} {{ server.address }} {% if backend.cookie is defined %} cookie {% endif %} check {% if server.options is defined %} {{ server.options }} {% endif %}
 {% endfor %}
 {% endif %}
-
 {% if backend.timeouts is defined %}
 {% for timeout in backend.timeouts %}
     timeout {{ timeout.name }} {{ timeout.value }}
