@@ -89,6 +89,7 @@ backend {{ backend.name }}
     server {{ server.name }} {{ server.address }} {% if backend.cookie is defined %} cookie {% endif %} check {% if server.options is defined %} {{ server.options }} {% endif %}
 {% endfor %}
 {% endif %}
+
 {% if backend.timeouts is defined %}
 {% for timeout in backend.timeouts %}
     timeout {{ timeout.name }} {{ timeout.value }}
