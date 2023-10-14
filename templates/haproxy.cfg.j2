@@ -44,7 +44,7 @@ frontend {{ frontend.name }}
     bind {{ frontend.bind_address }}:{{ frontend.port }}
     mode {{ frontend.mode }}
 
-    {% if frontend.tcp_requests %}
+    {% if tcp_requests in frontend %}
       {% for tcp_request in frontend.tcp_requests %}
     tcp-request {{ tcp_request.action }} {{ tcp_request.criteria }}
       {% endfor %}
