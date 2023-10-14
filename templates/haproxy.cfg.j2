@@ -93,7 +93,7 @@ backend {{ backend.name }}
 
 {% if backend.servers is defined %}
 {% for server in backend.servers %}
-    server {{ server.name }} {{ server.address }} {% if backend.cookie %} cookie {% endif %} {{ server.name }} check
+    server {{ server.name }} {{ server.address }} {% if backend.cookie %} cookie {% endif %} check
 {% endfor %}
 {% endif %}
 
