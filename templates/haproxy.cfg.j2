@@ -82,7 +82,7 @@ backend {{ backend.name }}
       {% endfor %}
     {% endif %}
 
-    {% if backend.httpchk != '' %}
+    {% if backend.httpchk is defined %}
     option httpchk {{ backend.httpchk }}
     {% endif %}
     {% if backend.cookie is defined %}
