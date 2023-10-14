@@ -53,7 +53,7 @@ frontend {{ frontend.name }}
     {% if frontend.default_backend is defined %}
     default_backend {{ frontend.default_backend }}
     {% endif %}
-    {% if frontend.acls %}
+    {% if frontend.acls is defined %}
       {% for acl in frontend.acls %}
     acl {{ acl.name }} {{ acl.criteria }}
       {% endfor %}
